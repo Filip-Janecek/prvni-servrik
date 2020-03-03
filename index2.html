@@ -1,0 +1,23 @@
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Ahoj</title>
+    <script>
+
+        function ukazCitac() {
+            let url = ` http://localhost:8080/citac`;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("poleCitace").innerHTML = obj.citacinan + obj.popis ;
+                });
+            });
+        }
+
+    </script>
+</head>
+<body onload="ukazCitac()">
+<h1></h1>
+<div id="poleCitace">...</div>
+</body>
+</html>

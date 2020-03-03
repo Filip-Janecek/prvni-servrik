@@ -22,6 +22,10 @@ function main(req, res) { //hlavní funkčnost mého serveru
         obj.popis = "muj prvni citac";
         res.writeHead(200,{ "Content-type": "application/json"});
         res.end(JSON.stringify(obj));
+    } else  if(req.url === "/intexik") {
+        res.writeHead(200, API_HEAD);
+        let s = fs.readFileSync("index2.html");
+        res.end(s);
     } else {
         res.writeHead(404, API_HEAD);
         res.end();

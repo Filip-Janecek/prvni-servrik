@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat1</title>
+    <script>
+        function odesli() {
+            let v = document.getElementById("zprava").value; //nacteni zpravy
+            document.getElementById("zprava").value = ""; //vymazani textu zpravu z inputu
+            let url = `http://localhost:8080/chat/add?msg=`+ v;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+
+                });
+            });
+        }
+
+        function nakresliSmajlika() {
+            let v = "smajlík"; //nacteni zpravy
+            let url = `http://localhost:8080/chat/add?msg=`+ v;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+
+                });
+            });
+        }
+        function ukazZpravy() {
+            let url = `http://localhost:8080/chat/list`;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    let s = "";
+                    for (let msg of obj.messages.splice(-100)) {
+                        s = s + msg + "<br>";
+                    }
+                    document.getElementById("zpravy").innerHTML = s;
+                });
+            });
+        }
+        function poNacteni() {
+            setInterval(ukazZpravy, 1000);
+            let input = document.getElementById("zprava");
+            input.addEventListener("keyup", function(event) {
+                if (event.keyCode === 13) {
+                    odesli();
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="poNacteni()">
+
+<h1>Chat1</h1>
+
+<div id="zpravy"></div>
+<input type="text" id="zprava">
+<input type="button" value="Odesli" onclick="odesli()">
+<input type="submit" value=":-D" onclick="nakresliSmajlika()">
+
+
+</body>
+</html>

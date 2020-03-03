@@ -5,19 +5,21 @@
     <script>
 
         function ukazCitac() {
-            let url = ` http://localhost:8080/citac`;
+            let url = ` http://localhost:8080/citac/add`;
             fetch(url).then(function(response) {
                 response.text().then(function(text) {
                     let obj = JSON.parse(text);
-                    document.getElementById("poleCitace").innerHTML = obj.citacinan + obj.popis ;
+                    document.getElementById("poleCitace").innerHTML = obj.messages;
                 });
             });
         }
+
 
     </script>
 </head>
 <body onload="ukazCitac()">
 
 <div id="poleCitace">...</div>
+<input type="text">
 </body>
 </html>

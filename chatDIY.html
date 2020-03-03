@@ -1,0 +1,27 @@
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Ahoj</title>
+    <script>
+
+        function napisZpravu() {
+            let mojeMsg = document.getElementById("mojeZprava").value;
+            let url = ` http://localhost:8080/citac/add?` + mojeMsg;
+            fetch(url).then(function(response) {
+                response.text().then(function(response) {
+                    let obj = JSON.parse(text);
+
+                });
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+
+<div id="poleCitace">...</div>
+<input type="text" id="mojeZprava">
+<input type="submit" value="odešli" onclick="napisZpravu()">
+</body>
+</html>
